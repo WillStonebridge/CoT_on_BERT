@@ -1,0 +1,119 @@
+\documentclass[11pt]{article}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{fancybox}
+\usepackage{framed}
+
+\geometry{margin=1in}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{CS577 HW2}
+\lhead{Discussion Questions}
+\rfoot{\thepage}
+
+\title{\vspace{-2em}CS577: Homework 2\\Discussion Questions}
+\date{}
+\begin{document}
+\maketitle
+
+\section*{Instructions}
+Answer each question thoughtfully and concisely. Use complete sentences and justify your reasoning. Submit a typed version on Gradescope.
+
+\vspace{1em}
+\section*{Discussion Questions}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+
+\item \textbf{Compare Results Across Settings.}  
+Create a table reporting the accuracy from each of the six experiment settings. Use the \textit{no-training, no-CoT} configuration as your baseline (i.e., pre-trained BERT predictions on the test set).  
+
+Then, answer the following:
+\begin{itemize}
+    \item How do the other five settings compare to the baseline?
+    \item Does adding Chain-of-Thought (CoT) help or hurt performance?
+    \item What impact does training BERT or T5 have on accuracy?
+\end{itemize}
+
+Support your analysis with two examples from the test set:
+\begin{enumerate}
+    \item One example where BERT alone is correct but BERT + CoT is wrong
+    \item One example where BERT + CoT is correct but BERT alone is wrong
+\end{enumerate}
+
+Briefly describe what the CoT helps capture in these examples, or why it may confuse the model. \textbf{(8 points)}
+
+\newpage
+\textbf{Your Answer:}
+\begin{framed}
+\vspace{40em}
+\end{framed}
+
+\item \textbf{Generalization and Transfer.}  
+The training data includes high school-level mathematics and computer science questions. The test set contains college-level computer science. Reflect on the following:
+
+\begin{itemize}
+    \item Do you believe your BERT model is learning general concepts that transfer to more difficult questions?
+    \item Use both your accuracy table and qualitative examples from above to support your reasoning.
+    \item Do you see evidence that the model is combining concepts from different subjects (e.g., math + CS)?
+\end{itemize}
+
+Now, suppose the task was much simpler — like basic grammar correction.  
+Would your answer about the usefulness of CoT reasoning or model (any Language Model) training change?
+In what types of tasks does reasoning seem most beneficial, and where does it add little or no value? \textbf{(6 points)}
+
+\textbf{Your Answer:}
+\begin{framed}
+\vspace{32em}
+\end{framed}
+
+\item \textbf{Applying CoT Elsewhere.}  
+Consider the task of training an autoregressive LM to find the shortest path between two vertices, given a set of labeled vertices and a set of undirected edges between them (i.e., $G = (V, E)$) in text form.  
+\begin{itemize}
+    \item What might a CoT response look like in terms of this problem?
+    \item Is there a specific type of graph that would allow the model to make good use of CoT?
+    \item Is there a specific type of graph that the model would likely be unable to solve even with CoT?
+\end{itemize}
+\textbf{(6 points)}
+
+\newpage
+\textbf{Your Answer:}
+\begin{framed}
+\vspace{32em}
+\end{framed}
+
+\item \textbf{Attention and CFGs} Consider the following CFG from the lecture slides:
+\begin{verbatim}
+S   → NP VP  
+VP  → V NP    
+PP  → P NP  
+NP  → NP PP  
+NP  → N  
+V   → `saw'  
+P   → `with'  
+N   → `binoculars' | `Sally' | `Alex'
+\end{verbatim}
+What might one of a perfectly trained auto-regressive transformer's attention pattern (i.e., attention weights) look like if the model has perfectly learned this CFG? In other words, if given the sentence, ``Sally saw Alex with binoculars", what word(s) would attend to the word ``Alex" the most in an ideal attention head? How does that relate back to the original CFG rules? The transformer is decoder-only (there is a causal mask). \textbf{(5 points)}
+
+\newpage
+\textbf{Your Answer:}
+\begin{framed}
+\vspace{32em}
+\end{framed}
+
+\item \textbf{Optional Extra Credit: Longer Context.}  
+Briefly describe your implementation for handling longer context for BERT and create another table by expanding the table from Q1 and reporting the performance with longer context, side by side for each design. 
+\textbf{(10 extra credit points)}
+
+\newpage
+\textbf{Your Answer:}
+\begin{framed}
+\vspace{32em}
+\end{framed}
+
+\end{enumerate}
+
+\end{document}

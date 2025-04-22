@@ -1,0 +1,8 @@
+# Core ML libraries
+torch==2.5.1
+transformers==4.46.2
+datasets==3.1.0
+
+# Common utilities
+pandas>=2.2.3
+tqdm>=4.67.0
