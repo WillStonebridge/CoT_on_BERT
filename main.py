@@ -18,10 +18,6 @@ from transformers import (
 from datasets import Dataset
 from tqdm import tqdm
 from typing import Tuple, Optional
-import matplotlib
-matplotlib.use("Agg")  # Use this to avoid GUI requirements on a headless server
-
-import matplotlib.pyplot as plt
 
 class QA_Dataset(torch.utils.data.Dataset):
     def __init__(self, df, CoT=False):
@@ -100,27 +96,6 @@ def train_bert(
             print(f"Average Loss: {sum(losses)/len(losses)}, Accuracy: {accuracy}")
         else:
             print(f"Average Loss: {sum(losses)/len(losses)}")
-
-    epochs = list(range(1, len(avg_losses) + 1))
-
-    fig, ax1 = plt.subplots()
-
-    color = 'tab:red'
-    ax1.set_xlabel('Epoch')
-    ax1.set_ylabel('Loss', color=color)
-    ax1.plot(epochs, avg_losses, label='Loss', color=color, marker='o')
-    ax1.tick_params(axis='y', labelcolor=color)
-
-    ax2 = ax1.twinx()  # Instantiate a second axes that shares the same x-axis
-    color = 'tab:blue'
-    ax2.set_ylabel('Accuracy', color=color)
-    ax2.plot(epochs, accuracies, label='Accuracy', color=color, marker='x')
-    ax2.tick_params(axis='y', labelcolor=color)
-
-    plt.title("Training Loss and Accuracy Over Epochs")
-    plt.savefig("training_data.png")
-    plt.close()
-    print(f"Plot saved as 'training_data.png'")
 
     return model, tokenizer
 
